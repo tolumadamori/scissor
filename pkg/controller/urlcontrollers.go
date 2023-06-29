@@ -93,5 +93,5 @@ func GetAllURLs(context *gin.Context) {
 }
 
 func Healthchecks(context *gin.Context) {
-	context.JSON(http.StatusNoContent, "")
+	context.JSON(http.StatusOK, 200)
 }
