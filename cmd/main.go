@@ -27,6 +27,8 @@ func loadDatabase() {
 func serveApplication() {
 	router := gin.Default()
 	router.GET("/:url", controller.ResolveURL)
+	//Adding Healthchecks for Render Deployment
+	router.GET("/healthz", controller.Healthchecks)
 
 	publicRoutes := router.Group("/auth")
 	publicRoutes.POST("/register", controller.Register)

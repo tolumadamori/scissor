@@ -91,3 +91,7 @@ func GetAllURLs(context *gin.Context) {
 
 	context.JSON(http.StatusOK, gin.H{"data": user.URLs})
 }
+
+func Healthchecks(context *gin.Context) {
+	context.JSON(http.StatusNoContent, "")
+}
