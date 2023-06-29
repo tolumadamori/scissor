@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	loadEnv()
 	loadDatabase()
 	serveApplication()
@@ -34,7 +35,6 @@ func loadEnv() {
 
 func serveApplication() {
 	router := gin.Default()
-
 	router.GET("/:url", controller.ResolveURL)
 
 	publicRoutes := router.Group("/auth")
