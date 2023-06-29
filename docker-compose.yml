@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  scissor:
+    build: . #search for Dockerfile
+    container_name: scissor
+    volumes:
+      - .:/go/src/scissor
+    ports:
+      - "8080:8080"
+    networks:
+      - scissor
+    restart: on-failure
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    #    command:
+    #      - '--character-set-server=utf8mb4'
+    restart: unless-stopped
+    tty: true
+    container_name: scissor-db
+    ports:
+      - "3307:3306"
+    volumes:
+      - .:/var/lib
+      - ./mysql:/var/lib/mysql
+      - ./mysql-files:/var/lib/mysql-files
+    environment:
+      MYSQL_DATABASE: scissor-db
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - scissor
+
+networks:
+  scissor:
+    external: false
+    name: scissor 
