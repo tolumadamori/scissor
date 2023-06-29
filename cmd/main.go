@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -12,7 +13,6 @@ import (
 
 func main() {
 	gin.SetMode(gin.ReleaseMode)
-	// loadEnv()
 	loadDatabase()
 	serveApplication()
 
@@ -23,13 +23,6 @@ func loadDatabase() {
 	config.Database.AutoMigrate(&models.User{}, &models.URL{})
 
 }
-
-// func loadEnv() {
-// 	err := godotenv.Load(".env")
-// 	if err != nil {
-// 		log.Fatal("Error loading .env file")
-// 	}
-// }
 
 func serveApplication() {
 	router := gin.Default()
@@ -46,4 +39,5 @@ func serveApplication() {
 
 	domain := os.Getenv("SERVE_PORT")
 	router.Run(domain)
+	fmt.Println("server is running at domain: " + domain)
 }
