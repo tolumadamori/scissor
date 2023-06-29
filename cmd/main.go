@@ -1,11 +1,9 @@
 package main
 
 import (
-	"log"
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	"github.com/tolumadamori/scissor/pkg/config"
 	"github.com/tolumadamori/scissor/pkg/controller"
 	"github.com/tolumadamori/scissor/pkg/middleware"
@@ -14,7 +12,7 @@ import (
 
 func main() {
 	gin.SetMode(gin.ReleaseMode)
-	loadEnv()
+	// loadEnv()
 	loadDatabase()
 	serveApplication()
 
@@ -26,12 +24,12 @@ func loadDatabase() {
 
 }
 
-func loadEnv() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-}
+// func loadEnv() {
+// 	err := godotenv.Load(".env")
+// 	if err != nil {
+// 		log.Fatal("Error loading .env file")
+// 	}
+// }
 
 func serveApplication() {
 	router := gin.Default()
