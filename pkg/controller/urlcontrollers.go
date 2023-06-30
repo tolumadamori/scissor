@@ -52,7 +52,7 @@ func ShortenURL(context *gin.Context) {
 	shortenedURL.UserID = user.ID
 	shortenedURL.OriginalURL = input.OriginalURL
 	domain := os.Getenv("DOMAIN")
-	shortenedURL.CustomShort = domain + "/" + id
+	shortenedURL.CustomShort = domain + "/api/" + id
 	//we shorten the URL here.
 
 	savedURL, err := shortenedURL.Save()
