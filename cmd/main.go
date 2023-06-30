@@ -25,7 +25,7 @@ func loadDatabase() {
 
 func serveApplication() {
 	router := gin.Default()
-	router.GET("/api/url", controller.ResolveURL)
+	router.GET("/api/:url", controller.ResolveURL)
 	//Adding Healthchecks for Render Deployment
 	router.GET("/", controller.Healthchecks)
 
