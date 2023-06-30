@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
@@ -75,7 +76,7 @@ func ResolveURL(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err, "url": url, "value": value})
 		return
 	}
-
+	fmt.Println(url, value)
 	context.Redirect(301, value)
 
 }
