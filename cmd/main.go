@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/tolumadamori/scissor/pkg/config"
@@ -40,7 +39,6 @@ func serveApplication() {
 	protectedRoutes.POST("", controller.ShortenURL)
 	protectedRoutes.GET("", controller.GetAllURLs)
 
-	domain := os.Getenv("SERVE_PORT")
-	router.Run(domain)
-	fmt.Println("server is running at domain: " + domain)
+	router.Run(":10000")
+	fmt.Println("server is running on port")
 }
