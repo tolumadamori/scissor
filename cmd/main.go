@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/tolumadamori/scissor/pkg/config"
@@ -39,8 +40,9 @@ func serveApplication() {
 	protectedRoutes.POST("", controller.ShortenURL)
 	protectedRoutes.GET("", controller.GetAllURLs)
 
-	router.Run(":10000")
-	fmt.Println("server is running on port")
+	port := os.Getenv("PORT")
+	router.Run("0.0.0.0:" + port)
+	fmt.Println("server is running on port" + port)
 }
 
 func cORSMiddleware() gin.HandlerFunc {
